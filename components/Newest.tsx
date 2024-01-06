@@ -1,4 +1,4 @@
-import { IProduct } from "@/app/interface";
+import { IProducts } from "@/app/interface";
 import { client } from "@/app/lib/sanity";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -20,7 +20,7 @@ async function getNewest() {
 }
 
 export default async function Newest() {
-  const newest: IProduct[] = await getNewest();
+  const newest: IProducts[] = await getNewest();
 
   return (
     <div className="bg-white">

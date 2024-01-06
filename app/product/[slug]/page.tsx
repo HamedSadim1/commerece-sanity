@@ -1,5 +1,6 @@
 import { IProduct } from "@/app/interface";
 import { client } from "@/app/lib/sanity";
+import AddToBag from "@/components/AddToBag";
 import ImageGallery from "@/components/ImageGallery";
 import { Button } from "@/components/ui/button";
 import { Star, Truck } from "lucide-react";
@@ -74,7 +75,13 @@ export default async function ProductPage({ params: { slug } }: Props) {
               <span className="text-sm"> 2-4 Day Shipping</span>
             </div>
             <div className="flex gap-2.5">
-              <Button>Add to Cart</Button>
+              <AddToBag
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                currency="USD"
+                image={product.image[0]}
+              />
               <Button variant="secondary">Buy Now</Button>
             </div>
             <p className="mt-12 text-base text-gray-500 tracking-wide">

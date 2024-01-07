@@ -1,6 +1,7 @@
 import { IProduct } from "@/app/interface";
 import { client } from "@/app/lib/sanity";
 import AddToBag from "@/components/AddToBag";
+import CheckoutNow from "@/components/CheckoutNow";
 import ImageGallery from "@/components/ImageGallery";
 import { Button } from "@/components/ui/button";
 import { Star, Truck } from "lucide-react";
@@ -26,7 +27,7 @@ interface Props {
     slug: string;
   };
 }
-
+export const dynamic = "force-dynamic";
 export default async function ProductPage({ params: { slug } }: Props) {
   const product: IProduct = await getProducts(slug);
 
@@ -84,7 +85,14 @@ export default async function ProductPage({ params: { slug } }: Props) {
                 image={product.image[0]}
                 price_id={product.price_id}
               />
-              <Button variant="secondary">Buy Now</Button>
+              <CheckoutNow
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                currency="USD"
+                image={product.image[0]}
+                price_id={product.price_id}
+              />
             </div>
             <p className="mt-12 text-base text-gray-500 tracking-wide">
               {product.description}

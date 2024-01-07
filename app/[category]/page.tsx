@@ -30,6 +30,7 @@ async function getCategroy(category: string) {
   return categoryProduct;
 }
 
+export const dynamic = 'force-dynamic'
 export default async function CategroyPage({
   params: { category },
 }: {

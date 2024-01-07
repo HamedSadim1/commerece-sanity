@@ -1,3 +1,4 @@
+"use client"
 import { urlFor } from "@/app/lib/sanity";
 import { Button } from "./ui/button";
 import { useShoppingCart } from "use-shopping-cart";

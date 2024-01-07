@@ -37,6 +37,11 @@ export default {
       validation: (Rule: Rule) => Rule.required().error('Price is required'),
     },
     {
+      name:"price_id",
+      title:"Stripe Price ID",
+      type:"string",
+    },
+    {
       name: 'image',
       title: 'Product Image',
       type: 'array',
@@ -52,5 +57,6 @@ export default {
       description: 'Category of the product',
       validation: (Rule: Rule) => Rule.required().error('Category is required'),
     },
+    
   ],
 }

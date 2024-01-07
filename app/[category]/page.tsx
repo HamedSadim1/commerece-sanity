@@ -4,16 +4,27 @@ import { client } from "../lib/sanity";
 import Image from "next/image";
 
 async function getCategroy(category: string) {
-  const query = `*[_type == "product" && category->name =="${category}"]{
-    name,
-    price,
-    description,
-  _id,
-    "slug" : slug.current,
-    "categoryName": category->name,
-    "imageUrl" : image[0].asset->url
-
-  }`;
+  // Use a different query based on whether a category is specified
+  const query =
+    category !== "all"
+      ? `*[_type == "product" && category->name == "${category}"]{
+       name,
+       price,
+       description,
+       _id,
+       "slug": slug.current,
+       "categoryName": category->name,
+       "imageUrl": image[0].asset->url
+     }`
+      : `*[_type == "product"]{
+       name,
+       price,
+       description,
+       _id,
+       "slug": slug.current,
+       "categoryName": category->name,
+       "imageUrl": image[0].asset->url
+     }`;
 
   const categoryProduct = await client.fetch(query);
   return categoryProduct;

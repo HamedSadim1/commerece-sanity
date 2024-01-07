@@ -15,4 +15,5 @@ export interface IProduct {
   description: string;
   image: any[];
   categoryName: string;
+  price_id: string;
 }

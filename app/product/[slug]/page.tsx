@@ -13,7 +13,8 @@ async function getProducts(slug: string) {
     _id,
     "slug" : slug.current,
     "categoryName": category->name,
-    image 
+    image,
+    price_id,
   }`;
 
   const products = await client.fetch(query);
@@ -81,6 +82,7 @@ export default async function ProductPage({ params: { slug } }: Props) {
                 price={product.price}
                 currency="USD"
                 image={product.image[0]}
+                price_id={product.price_id}
               />
               <Button variant="secondary">Buy Now</Button>
             </div>

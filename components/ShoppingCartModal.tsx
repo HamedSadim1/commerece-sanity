@@ -12,7 +12,19 @@ export default function ShoppingCartModal() {
     cartDetails,
     removeItem,
     totalPrice,
+    redirectToCheckout,
   } = useShoppingCart();
+
+  async function handleCheckout(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+
+    try {
+      const result = await redirectToCheckout();
+      if (result.error) throw new Error(result.error.message);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
       <SheetContent className="sm:max-w w-[90vw]">
@@ -37,7 +49,6 @@ export default function ShoppingCartModal() {
                           height={100}
                         />
                       </div>
-
                       <div className="ml-4 flex-1 flex flex-col">
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-800">
@@ -52,7 +63,6 @@ export default function ShoppingCartModal() {
                           <p className="text-gray-500">
                             Qty {product.quantity}
                           </p>
-
                           <div className="flex">
                             <button
                               type="button"
@@ -79,7 +89,12 @@ export default function ShoppingCartModal() {
               Shipping and taxes calculated at checkout.
             </p>
             <div className="mt-6">
-              <Button className="w-full">Checkout</Button>
+              <Button
+                className="w-full"
+                onClick={(event) => handleCheckout(event)}
+              >
+                Checkout
+              </Button>
             </div>
             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
               <p>
